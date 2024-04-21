@@ -5,7 +5,7 @@
 // scss-docs-start spinner-border-keyframes
 @keyframes spinner-border {
   to {
-    transform: rotate(360deg) #{"/* rtl:ignore */"};
+    transform: rotate(360deg) #{'/* rtl:ignore */'};
   }
 }
 // scss-docs-end spinner-border-keyframes
@@ -15,7 +15,7 @@
   width: $spinner-width;
   height: $spinner-height;
   vertical-align: $spinner-vertical-align;
-  border: $spinner-border-width solid currentColor;
+  // border: $spinner-border-width solid currentColor;
   border-right-color: transparent;
   // stylelint-disable-next-line property-disallowed-list
   border-radius: 50%;

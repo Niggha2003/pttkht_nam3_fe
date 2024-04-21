@@ -16,12 +16,7 @@
   user-select: none;
   background-color: transparent;
   border: $btn-border-width solid transparent;
-  @include button-size(
-    $btn-padding-y,
-    $btn-padding-x,
-    $btn-font-size,
-    $btn-border-radius
-  );
+  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
   @include transition($btn-transition);
 
   &:hover {
@@ -32,7 +27,6 @@
   .btn-check:focus + &,
   &:focus {
     outline: 0;
-    box-shadow: $btn-focus-box-shadow;
   }
 
   .btn-check:checked + &,
@@ -71,6 +65,7 @@
     @include button-outline-variant($value);
   }
 }
+
 // scss-docs-end btn-variant-loops
 
 //

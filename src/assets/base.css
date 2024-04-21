@@ -5,3 +5,22 @@
   margin: 0;
   font-weight: normal;
 }
+
+/* custom scrollbar */
+/* CSS */
+::-webkit-scrollbar {
+  width: 7px; /* chiều rộng của thanh cuộn */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* màu nền của thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* màu nền của phần cuộn */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* màu nền của phần cuộn khi di chuột qua */
+}
