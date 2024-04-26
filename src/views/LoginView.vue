@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import { get } from '@/utils/httpRequest'
+import { get, post } from '@/utils/httpRequest'
+import Cookies from 'js-cookie'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
@@ -16,16 +17,27 @@ const accountPassword = ref('')
 
 const login = async () => {
   try {
-    const response = get('/api_login', {
-      params: {
-        accountName: accountName.value,
-        accountPassword: accountPassword.value
-      },
-      withCredentials: true // Cho phép gửi cookie từ VueJS đến ExpressJS
+    const response = post('/api_login', {
+      accountName: accountName.value,
+      accountPassword: accountPassword.value
+
+      // withCredentials: true // Cho phép gửi cookie từ VueJS đến ExpressJS
     })
     return response
   } catch (error) {
     console.log(error)
+  }
+}
+
+const setUser = async () => {
+  try {
+    const user = await get('/api_check_jwt', {})
+    if (user) {
+      store.commit('login', true)
+      store.commit('changeUser', JSON.stringify(user))
+    }
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -37,9 +49,9 @@ async function handleLogin() {
 
       loading.value = false
       if (resultLogin) {
-        sessionStorage.setItem('jwtToken', resultLogin)
-        store.commit('login')
+        Cookies.set('jwt-token', resultLogin, { expires: 3600 })
         router.push('/')
+        await setUser()
       } else {
         wrongAccess.value = true
       }
@@ -91,7 +103,7 @@ async function handleLogin() {
                   </div>
                 </div>
               </div>
-              <div class="mb-3">
+              <div class="">
                 <div class="form-group">
                   <div class="">
                     <!---->
@@ -113,7 +125,6 @@ async function handleLogin() {
                   class="btn btn-lg bg-gradient-success w-100 mt-4 fs-6 text-white fw-bolder"
                   fdprocessedid="ycmkz9"
                   v-if="loading"
-                  type="submit"
                 >
                   <font-awesome-icon class="spinner-border-sm spinner-border" :icon="faSpinner" />
                 </button>

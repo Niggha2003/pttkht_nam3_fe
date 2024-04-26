@@ -1,0 +1,98 @@
+#sidebar {
+  width: 255px;
+  height: 100vh;
+  max-width: 255px;
+  min-width: 200px;
+  background: $white;
+  color: map-get($reds, 'red-600');
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  user-select: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  border-right: 2px solid map-get($reds, 'red-400');
+  box-shadow: 5px 0 10px $gray-500;
+  z-index: 10000;
+
+  overflow-y: scroll;
+
+  &.active {
+    margin-left: -300px;
+  }
+  .logo {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 20px auto 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .logo span {
+    display: block;
+  }
+  ul.components {
+    padding: 0;
+  }
+  ul li {
+    font-size: 16px;
+  }
+  ul li > ul {
+    margin-left: 10px;
+  }
+  ul li > ul li {
+    font-size: 14px;
+  }
+  ul li a {
+    padding: 10px 20px;
+    display: block;
+    color: map-get($reds, 'red-600');
+    border-bottom: 1px solid map-get($reds, 'red-200');
+  }
+  ul li a:hover {
+    background-color: map-get($reds, 'red-400');
+    color: $white;
+    transition: 0.5s;
+  }
+  ul li.active > a {
+    background-color: map-get($reds, 'red-400');
+    color: $white;
+    transition: 0.5s;
+  }
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #sidebar {
+    margin-left: -300px;
+    box-shadow: none;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+}
+
+a[data-toggle='collapse'] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@media (max-width: 991.98px) {
+  #sidebarCollapse span {
+    display: none;
+  }
+}

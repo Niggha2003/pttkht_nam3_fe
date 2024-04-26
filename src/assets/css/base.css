@@ -6,10 +6,14 @@
   font-weight: normal;
 }
 
+body {
+  overflow-x: hidden; /* Ẩn thanh trượt ngang */
+}
+
 /* custom scrollbar */
 /* CSS */
 ::-webkit-scrollbar {
-  width: 7px; /* chiều rộng của thanh cuộn */
+  width: 0; /* chiều rộng của thanh cuộn */
 }
 
 ::-webkit-scrollbar-track {

@@ -2,7 +2,7 @@
 .tooltip {
   position: absolute;
   z-index: $zindex-tooltip;
-  display: block;
+  display: none;
   margin: $tooltip-margin;
   // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
   // So reset our font and text properties to avoid inheriting weird values.
@@ -10,10 +10,10 @@
   @include font-size($tooltip-font-size);
   // Allow breaking very long words so they don't overflow the tooltip's bounds
   word-wrap: break-word;
-  opacity: 0;
 
   &.show {
     opacity: $tooltip-opacity;
+    display: block;
   }
 
   .tooltip-arrow {
@@ -24,7 +24,7 @@
 
     &::before {
       position: absolute;
-      content: "";
+      content: '';
       border-color: transparent;
       border-style: solid;
     }
@@ -33,7 +33,7 @@
 
 .bs-tooltip-top {
   padding: $tooltip-arrow-height 0;
-
+  bottom: 102%;
   .tooltip-arrow {
     bottom: 0;
 
@@ -47,7 +47,7 @@
 
 .bs-tooltip-end {
   padding: 0 $tooltip-arrow-height;
-
+  left: 102%;
   .tooltip-arrow {
     left: 0;
     width: $tooltip-arrow-height;
@@ -55,8 +55,8 @@
 
     &::before {
       right: -1px;
-      border-width: ($tooltip-arrow-width * 0.5) $tooltip-arrow-height
-        ($tooltip-arrow-width * 0.5) 0;
+      border-width: ($tooltip-arrow-width * 0.5) $tooltip-arrow-height ($tooltip-arrow-width * 0.5)
+        0;
       border-right-color: $tooltip-arrow-color;
     }
   }
@@ -64,7 +64,7 @@
 
 .bs-tooltip-bottom {
   padding: $tooltip-arrow-height 0;
-
+  top: 102%;
   .tooltip-arrow {
     top: 0;
 
@@ -78,7 +78,7 @@
 
 .bs-tooltip-start {
   padding: 0 $tooltip-arrow-height;
-
+  right: 102%;
   .tooltip-arrow {
     right: 0;
     width: $tooltip-arrow-height;
@@ -94,22 +94,23 @@
 }
 
 .bs-tooltip-auto {
-  &[data-popper-placement^="top"] {
+  &[data-popper-placement^='top'] {
     @extend .bs-tooltip-top;
   }
-  &[data-popper-placement^="right"] {
+  &[data-popper-placement^='right'] {
     @extend .bs-tooltip-end;
   }
-  &[data-popper-placement^="bottom"] {
+  &[data-popper-placement^='bottom'] {
     @extend .bs-tooltip-bottom;
   }
-  &[data-popper-placement^="left"] {
+  &[data-popper-placement^='left'] {
     @extend .bs-tooltip-start;
   }
 }
 
 // Wrapper for the tooltip content
 .tooltip-inner {
+  min-width: $tooltip-min-width;
   max-width: $tooltip-max-width;
   padding: $tooltip-padding-y $tooltip-padding-x;
   color: $tooltip-color;
